@@ -19,7 +19,7 @@ def word_freq(word_list):
     freq_dic = {}
 
     # Remove punctuation marks:
-    punctuation = re.compile(r'[.?!,":;]') 
+    punctuation = re.compile(r'[(.?!,":;\'`)]') 
 
     # Build the dictionary:
     for word in word_list:
