@@ -4,20 +4,19 @@ from ConfigParser import SafeConfigParser
 import os
 import sys
 
-# We start by telling the script what file to use:
-# textfile = open('mdg.txt', 'r')
-
-# Create list of lower case words, \s+ --> match any whitespace(s)
+# Create list of lower case words
+# define words as `stuff between whitespace(s)'
+# \s+ --> match any whitespace(s)
 def word_list(textfile):
     textfile = (open(textfile,'r'))
     word_list = re.split('\s+', textfile.read().lower())
     textfile.close()
     return word_list
 
+# Create dictionary of word:frequency pairs 
 def word_freq(word_list):
-    # Create dictionary of word:frequency pairs
     freq_dic = {}
-
+    
     # Remove punctuation marks:
     punctuation = re.compile(r'[(.?!,":;\'`)]') 
 
@@ -55,6 +54,7 @@ def print_freq(freq_dic):
 # Main function
 if __name__ == '__main__' :
     
+    # Get file to use from settings.cfg:
     config = SafeConfigParser()
     script_dir = os.path.dirname(__file__)
     config_file = os.path.join(script_dir, 'settings.cfg')
@@ -62,10 +62,13 @@ if __name__ == '__main__' :
 
     textfile = config.get('files','full_text')
     
+    # call the functions that do the counting and sorting
     word_list = word_list(textfile)
     word_count = len(word_list)
     freq_dic = word_freq(word_list)
     unique_word_count = len(freq_dic)
     freq_dic_sorted = freq_sorted_dic(freq_dic)
     
+    # print the sorted word-frequency pairs
+    # use `python words.py > word-freq-pairs.txt' to send output to a text file
     print_freq(freq_dic_sorted)
