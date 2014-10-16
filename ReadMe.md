@@ -1,8 +1,7 @@
 # Useful Python Scripts for Texts #
 
 
-## Upfront ##
-
+## License and Info ##
 
 This collection of "Useful Python Scripts for Texts" (UPST) was originally constructed for teaching students in an honors academic writing course. Like a lot of open source software, it has two characteristics:
 
@@ -15,6 +14,12 @@ As a way to thank my many teachers, I have tried here to comment the scripts as 
 
 All of this work is hereby in the [public domain][].
 
+## Setup ##
+
+- Copy ```settings_example.cfg``` to ```settings.cfg``` and set ```full_text``` to the right path for your environment.
+- Run ```pip install -r requirements.txt``` to make sure you have all the modules you'll need.
+
+If this is your first time using ```nltk```, you'll probably need to download additional info. See [the NLTK docs](http://www.nltk.org/data.html) for info.
 
 ## Usage ##
 
