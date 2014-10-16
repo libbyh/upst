@@ -49,8 +49,7 @@ def print_freq(freq_dic):
         print word + "," + str(freq)
         
 # Main function
-if __name__ == '__main__' :
-    
+def main():
     # Get file to use from settings.cfg:
     config = SafeConfigParser()
     script_dir = os.path.dirname(__file__)
@@ -68,3 +67,7 @@ if __name__ == '__main__' :
     # print the sorted word-frequency pairs
     # use `python words.py > word-freq-pairs.txt' to send output to a text file
     print_freq(freq_dic)
+
+if __name__ == '__main__' :
+    main()
+    
