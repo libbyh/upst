@@ -7,7 +7,7 @@ import sys
 # Create list of lower case words
 # define words as `stuff between whitespace(s)'
 # \s+ --> match any whitespace(s)
-def word_list(textfile):
+def create_word_list(textfile):
     textfile = (open(textfile,'r'))
     word_list = re.split('\s+', textfile.read().lower())
     textfile.close()
@@ -15,7 +15,7 @@ def word_list(textfile):
 
 # Create dictionary of word:frequency pairs
 # by default, sorts dictionary by frequency (desc) 
-def word_freq(word_list, sort="frequency"):
+def create_freq_dic(word_list, sort="frequency"):
     freq_dic = {}
     
     # Remove punctuation marks:
@@ -47,10 +47,8 @@ def word_freq(word_list, sort="frequency"):
 def print_freq(freq_dic):
     for freq, word in freq_dic:
         print word + "," + str(freq)
-        
-# Main function
-if __name__ == '__main__' :
-    
+
+def main():
     # Get file to use from settings.cfg:
     config = SafeConfigParser()
     script_dir = os.path.dirname(__file__)
@@ -60,11 +58,21 @@ if __name__ == '__main__' :
     textfile = config.get('files','full_text')
     
     # call the functions that do the counting and sorting
-    word_list = word_list(textfile)
+    word_list = create_word_list(textfile)
     word_count = len(word_list)
-    freq_dic = word_freq(word_list)
+    freq_dic = create_freq_dic(word_list)
     unique_word_count = len(freq_dic)
     
     # print the sorted word-frequency pairs
     # use `python words.py > word-freq-pairs.txt' to send output to a text file
+    print "Analyzed " + textfile + " and found the following:"
+    print str(word_count) + " words"
+    print str(unique_word_count) + " unique words"
+    print "Unique words by descending frequency: "
     print_freq(freq_dic)
+
+# Call the main function
+if __name__ == '__main__' :
+    main()
+
+    
