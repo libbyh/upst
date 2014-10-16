@@ -17,8 +17,8 @@ def concordance(textfile, word):
     concordword = text.concordance(word)
 
     return concordword
-
-if __name__ == '__main__' :
+    
+def main():
     # Get file to use from settings.cfg:
     config = SafeConfigParser()
     script_dir = os.path.dirname(__file__)
@@ -36,3 +36,6 @@ if __name__ == '__main__' :
 
     concordword = concordance(textfile, word)
     print(concordword)
+
+if __name__ == '__main__' :
+    main()
