@@ -2,7 +2,6 @@
 import re
 from ConfigParser import SafeConfigParser
 import os
-import sys
 
 # Create list of lower case words
 # define words as `stuff between whitespace(s)'
