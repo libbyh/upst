@@ -30,3 +30,13 @@ In order to make these scripts as easy to use as possible, they are designed to 
 Yup, it's just that easy. 
 
 [public domain]: http://creativecommons.org/publicdomain/
+
+## Changes from [johnlaudun/upst](https://github.com/johnlaudun/upst) ##
+
+1. I’m working my way through each file editing them to use ```main()``` functions and ```if __name__ == "__main__": main()``` calls. StackOverflow has a few good posts about why to do this. See [What does `if __name__ == “__main__”:` do?](http://stackoverflow.com/questions/419163/what-does-if-name-main-do), for instance. The gist is that declaring and then calling a main function separates the functions from the code that should execute. It also means that stuff in the ```main()``` function happens only when you call it as a standalone script (i.e., not when you use it in other programs).
+
+2. I’m dividing the scripts into sets of functions generally. Why? Functions run faster. Again, [StackOverflow has more info on why](http://stackoverflow.com/questions/11241523/why-does-python-code-run-faster-in-a-function). Also, functions are cleaner than scripts and can be used in other programs. If you’ve looked at any of my older code on GitHub, you know I used to write straight scripts all the time too. I’ve seen the light.
+
+3. I’m changing the way ```stats.py``` counts lines, paragraphs, words, etc. to accommodate Project Gutenberg texts. In Laudun’s original code, each line was a paragraph, but Project Gutenberg texts have blank lines between paragraphs and multiple lines with paragraphs.
+
+4. I added a ```requirements.txt file```. Each script requires a different set of modules, and it was getting frustrating to have to interrupt my analysis workflow to install them. Now you can install them all at once as soon as you clone the repo. Then you can get to work.
