@@ -11,24 +11,15 @@ def create_word_list(textfile):
     word_list = re.split('\s+', textfile.read().lower())
     textfile.close()
     return word_list
-    
-# generic function for making list items lowercase
-def make_lower(word_list):
-    lower_word_list = [word.lower() for word in word_list]
-    return lower_word_list
 
 # Create dictionary of word:frequency pairs
 # by default, sorts dictionary by frequency (desc) 
-def create_freq_dic(word_list, sort="frequency", case_sensitive="no"):
+def create_freq_dic(word_list, sort="frequency"):
     freq_dic = {}
     
     # Remove punctuation marks:
     punctuation = re.compile(r'[(.?!,":;\'\\`)]') 
 
-    # Build the dictionary:
-    if case_sensitive == "no":
-        word_list = make_lower(word_list)
-        
     for word in word_list:
         # remove punctuation marks
         word = punctuation.sub("", word)
