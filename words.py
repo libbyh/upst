@@ -2,15 +2,21 @@
 import re
 from ConfigParser import SafeConfigParser
 import os
+from nltk.corpus import stopwords
 
 # Create list of lower case words
 # define words as `stuff between whitespace(s)'
 # \s+ --> match any whitespace(s)
-def create_word_list(textfile):
+def create_word_list(textfile, remove_stop_words="true"):
     textfile = (open(textfile,'r'))
     word_list = re.split('\s+', textfile.read().lower())
     textfile.close()
-    return word_list
+    if remove_stop_words:
+        stops = set(stopwords.words("english"))
+        filtered_words = [w for w in word_list if not w in stops]
+        return filtered_words
+    else:
+        return word_list
 
 # Create dictionary of word:frequency pairs
 # by default, sorts dictionary by frequency (desc) 
@@ -19,7 +25,7 @@ def create_freq_dic(word_list, sort="frequency"):
     
     # Remove punctuation marks:
     punctuation = re.compile(r'[(.?!,":;\'\\`)]') 
-
+        
     for word in word_list:
         # remove punctuation marks
         word = punctuation.sub("", word)
