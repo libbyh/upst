@@ -39,4 +39,4 @@ Yup, it's just that easy.
 
 3. I’m changing the way ```stats.py``` counts lines, paragraphs, words, etc. to accommodate Project Gutenberg texts. In Laudun’s original code, each line was a paragraph, but Project Gutenberg texts have blank lines between paragraphs and multiple lines with paragraphs.
 
-4. I added a ```requirements.txt file```. Each script requires a different set of modules, and it was getting frustrating to have to interrupt my analysis workflow to install them. Now you can install them all at once as soon as you clone the repo. Then you can get to work.
+4. I added a ```requirements.txt``` file. Each script requires a different set of modules, and it was getting frustrating to have to interrupt my analysis workflow to install them. Now you can install them all at once as soon as you clone the repo. Then you can get to work.
