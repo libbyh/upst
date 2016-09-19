@@ -10,7 +10,7 @@ import sys
 def concordance(textfile, word):
     textfile = open(textfile)
     rawtext = textfile.read()
-    tokens = nltk.word_tokenize(rawtext)
+    tokens = nltk.word_tokenize(rawtext.decode('utf-8'))
     text = nltk.Text(tokens)
 
     # Now we can actually look at a word:
