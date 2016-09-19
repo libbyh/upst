@@ -5,8 +5,8 @@ import sys
 
 # First, let's get input from the user:
 
-print "Enter the word for which you would like to see a dispersion graph:",
-word = raw_input()
+print("Enter the word for which you would like to see a dispersion graph:", end=' ')
+word = input()
 
 # I can't get this to work for multiple words
 # words = raw_input().split(",")

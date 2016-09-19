@@ -65,8 +65,8 @@ def make_wordcloud(words, counts, fname, font_path=None, width=400, height=200,
 
     """
     if len(counts) <= 0:
-        print("We need at least 1 word to plot a word cloud, got %d."
-              % len(counts))
+        print(("We need at least 1 word to plot a word cloud, got %d."
+              % len(counts)))
 
     if font_path is None:
         font_path = FONT_PATH
@@ -140,7 +140,7 @@ def make_wordcloud(words, counts, fname, font_path=None, width=400, height=200,
     # redraw in color
     img = Image.new("RGB", (width, height))
     draw = ImageDraw.Draw(img)
-    everything = zip(words, font_sizes, positions, orientations)
+    everything = list(zip(words, font_sizes, positions, orientations))
     for word, font_size, position, orientation in everything:
         font = ImageFont.truetype(font_path, font_size)
         # transpose font optionally

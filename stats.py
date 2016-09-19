@@ -2,7 +2,7 @@
 
 # This script counts lines, sentences, and words of a text file. 
 
-from ConfigParser import SafeConfigParser
+from configparser import SafeConfigParser
 import os
 
 class TextItem(object):
@@ -73,7 +73,7 @@ def main():
     counts = count_objects(textfile)    
     
     # And now print the results:
-    print counts
+    print(counts)
 
 # Call the main function
 if __name__ == '__main__' :

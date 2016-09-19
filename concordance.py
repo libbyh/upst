@@ -3,7 +3,7 @@
 import nltk
 import sys
 import argparse
-from ConfigParser import SafeConfigParser
+from configparser import SafeConfigParser
 import os
 import sys
 

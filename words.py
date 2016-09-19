@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 import re
-from ConfigParser import SafeConfigParser
+from configparser import SafeConfigParser
 import os
 from nltk.corpus import stopwords
 
@@ -37,12 +37,12 @@ def create_freq_dic(word_list, sort="frequency"):
     
     # sort the dictionary
     if sort == "frequency":
-        freq_dic = [(val, key) for key, val in freq_dic.items()]
+        freq_dic = [(val, key) for key, val in list(freq_dic.items())]
         # sort by frequency
         freq_dic.sort(reverse=True)
     # if user specificied alphabetical sorting, do that instead
     elif sort == "alphabetical":
-        freq_dic = freq_dic.items()
+        freq_dic = list(freq_dic.items())
         freq_dic.sort()    
     
     return freq_dic
@@ -50,7 +50,7 @@ def create_freq_dic(word_list, sort="frequency"):
 # print frequency dictionaries
 def print_freq(freq_dic):
     for freq, word in freq_dic:
-        print word + "," + str(freq)
+        print(word + "," + str(freq))
 
 def main():
     # Get file to use from settings.cfg:
@@ -69,10 +69,10 @@ def main():
     
     # print the sorted word-frequency pairs
     # use `python words.py > word-freq-pairs.txt' to send output to a text file
-    print "Analyzed " + textfile + " and found the following:"
-    print str(word_count) + " words"
-    print str(unique_word_count) + " unique words"
-    print "Unique words by descending frequency: "
+    print("Analyzed " + textfile + " and found the following:")
+    print(str(word_count) + " words")
+    print(str(unique_word_count) + " unique words")
+    print("Unique words by descending frequency: ")
     print_freq(freq_dic)
 
 # Call the main function
