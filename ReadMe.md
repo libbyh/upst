@@ -16,8 +16,8 @@ All of this work is hereby in the [public domain][].
 
 ## Setup ##
 
-- Copy ```settings_example.cfg``` to ```settings.cfg``` and set ```full_text``` to the right path for your environment.
-- Run ```pip install -r requirements.txt``` to make sure you have all the modules you'll need.
+1. Copy ```settings_example.cfg``` to ```settings.cfg``` and set ```full_text``` to the right path for your environment.
+2. Run ```conda env create -f environment.yml``` to make sure you have all the modules you'll need.
 
 If this is your first time using ```nltk```, you'll probably need to download additional info. See [the NLTK docs](http://www.nltk.org/data.html) for info.
 
@@ -31,6 +31,10 @@ Yup, it's just that easy.
 
 [public domain]: http://creativecommons.org/publicdomain/
 
+## Recent changes
+- updated to use Python 3.5 (anything lower is no longer supported)
+- fixed dispersions.py so that it displays graphs for a single word
+
 ## Changes from [johnlaudun/upst](https://github.com/johnlaudun/upst) ##
 
 1. I’m working my way through each file editing them to use ```main()``` functions and ```if __name__ == "__main__": main()``` calls. StackOverflow has a few good posts about why to do this. See [What does `if __name__ == “__main__”:` do?](http://stackoverflow.com/questions/419163/what-does-if-name-main-do), for instance. The gist is that declaring and then calling a main function separates the functions from the code that should execute. It also means that stuff in the ```main()``` function happens only when you call it as a standalone script (i.e., not when you use it in other programs).
@@ -39,4 +43,4 @@ Yup, it's just that easy.
 
 3. I’m changing the way ```stats.py``` counts lines, paragraphs, words, etc. to accommodate Project Gutenberg texts. In Laudun’s original code, each line was a paragraph, but Project Gutenberg texts have blank lines between paragraphs and multiple lines with paragraphs.
 
-4. I added a ```requirements.txt``` file. Each script requires a different set of modules, and it was getting frustrating to have to interrupt my analysis workflow to install them. Now you can install them all at once as soon as you clone the repo. Then you can get to work.
+4. I added a ```environment.yml``` file. Each script requires a different set of modules, and it was getting frustrating to have to interrupt my analysis workflow to install them. Now you can install them all at once as soon as you clone the repo. Then you can get to work.
