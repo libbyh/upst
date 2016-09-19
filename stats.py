@@ -21,7 +21,7 @@ def count_objects(textfile):
     for line in f:
         lines += 1
     
-        if line.startswith('CHAPTER'):
+        if line.startswith('CHAPTER') or line.startswith('Chapter'):
             chapters += 1
         elif line.startswith('VOLUME') or line.startswith('VOL.'):
             volumes += 1
