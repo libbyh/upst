@@ -1,0 +1,1 @@
+And does not encourage the feeding of the poor.

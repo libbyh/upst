@@ -1,0 +1,1 @@
+{'Volumes': 0, 'Average paragraphs/chapter': 'n/a', 'Paragraphs': 2603, 'Lines': 13052, 'Chapters': 0, 'Average words/paragraph': 41, 'Words': 108012, 'Sentences': 7508, 'Average sentences/paragraph': 2}
