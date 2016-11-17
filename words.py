@@ -9,7 +9,7 @@ from nltk.corpus import stopwords
 # \s+ --> match any whitespace(s)
 def create_word_list(textfile, remove_stop_words="true"):
     with open(textfile, 'r') as textfile:
-	    word_list = re.split('\s+', textfile.read().lower())
+	    word_list = re.split('\s+', textfile.read())
 
     if remove_stop_words:
         stops = set(stopwords.words("english"))
@@ -17,6 +17,22 @@ def create_word_list(textfile, remove_stop_words="true"):
         return filtered_words
     else:
         return word_list
+
+
+# Create list of upper case words
+# define words as `stuff between whitespace(s)'
+# \s+ --> match any whitespace(s)
+def create_upper_list(textfile, remove_stop_words="true"):
+    with open(textfile, 'r') as textfile:
+        word_list = re.split('\s+', textfile.read())
+
+    if remove_stop_words:
+        stops = set(stopwords.words("english"))
+        word_list = [w for w in word_list if not w in stops]
+
+    upper_list = [w for w in word_list if w.isupper()] # put uppercase words in a list
+
+    return upper_list
 
 # Create dictionary of word:frequency pairs
 # by default, sorts dictionary by frequency (desc) 
@@ -63,17 +79,19 @@ def main():
     
     # call the functions that do the counting and sorting
     word_list = create_word_list(textfile)
-    word_count = len(word_list)
-    freq_dic = create_freq_dic(word_list)
-    unique_word_count = len(freq_dic)
+    # word_count = len(word_list)
+    # freq_dic = create_freq_dic(word_list)
+    # unique_word_count = len(freq_dic)
+    upper_list = create_upper_list(textfile)
     
     # print the sorted word-frequency pairs
     # use `python words.py > word-freq-pairs.txt' to send output to a text file
-    print("Analyzed " + textfile + " and found the following:")
-    print(str(word_count) + " words")
-    print(str(unique_word_count) + " unique words")
-    print("Unique words by descending frequency: ")
-    print_freq(freq_dic)
+    print("Analyzed " + textfile + " and found the following uppercase words:")
+    # print(str(word_count) + " words")
+    # print(str(unique_word_count) + " unique words")
+    # print("Unique words by descending frequency: ")
+    # print_freq(freq_dic)
+    print(upper_list)
 
 # Call the main function
 if __name__ == '__main__' :
