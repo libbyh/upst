@@ -1,1 +1,0 @@
-“It has seven doors; for each door is an assigned class.”
