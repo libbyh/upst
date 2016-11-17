@@ -8,9 +8,9 @@ from nltk.corpus import stopwords
 # define words as `stuff between whitespace(s)'
 # \s+ --> match any whitespace(s)
 def create_word_list(textfile, remove_stop_words="true"):
-    textfile = (open(textfile,'r'))
-    word_list = re.split('\s+', textfile.read().lower())
-    textfile.close()
+    with open(textfile, 'r') as textfile:
+	    word_list = re.split('\s+', textfile.read().lower())
+
     if remove_stop_words:
         stops = set(stopwords.words("english"))
         filtered_words = [w for w in word_list if not w in stops]
