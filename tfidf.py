@@ -1,46 +1,22 @@
-# from https://gist.github.com/sloria/6407257
+from sklearn.feature_extraction.text import TfidfVectorizer
+import numpy as np
 
-import math
-from textblob import TextBlob as tb
-from collections import Counter
+bible = open("religious-texts/King James Bible.txt").read()
+quran = open("religious-texts/Quran.txt").read()
 
-def tf(word, blob):
-    return blob.words.count(word) / len(blob.words)
+vectorizer = TfidfVectorizer() # read the docs on this, you can do a lot, pass in your own tokenizer, easily do n-grams, etc.
+tdm = vectorizer.fit_transform([bible, quran])
+# this is a matrix where each column represents a word and each row represents a document
 
-def n_containing(word, bloblist):
-    return sum(1 for blob in bloblist if word in blob)
+feature_names = np.array(vectorizer.get_feature_names())
+#this gets us access to the vocabulary
 
-def idf(word, bloblist):
-    return math.log(len(bloblist) / (1 + n_containing(word, bloblist)))
+top_bible_scores = np.argsort(tdm.A[0])[-5:]
+# argsort returns an array with the indices that would sort an array,
+# i.e., np.argsort([2, 6, 4]) would return [0, 2, 1]
+top_quran_scores = np.argsort(tdm.A[1])[-5:]
 
-def tfidf(word, blob, bloblist):
-    return tf(word, blob) * idf(word, bloblist)
+top_bible_words = feature_names[top_bible_scores]
 
-document1 = tb(open("religious-texts/King James Bible.txt").read())
-
-document2 = tb(open("religious-texts/Quran.txt").read())
-
-# document1 = tb("""Python is a 2000 made-for-TV horror movie directed by Richard
-# Clabaugh. The film features several cult favorite actors, including William
-# Zabka of The Karate Kid fame, Wil Wheaton, Casper Van Dien, Jenny McCarthy,
-# Keith Coogan, Robert Englund (best known for his role as Freddy Krueger in the
-# A Nightmare on Elm Street series of films), Dana Barron, David Bowe, and Sean
-# Whalen. The film concerns a genetically engineered snake, a python, that
-# escapes and unleashes itself on a small town. It includes the classic final
-# girl scenario evident in films like Friday the 13th. It was filmed in Los Angeles,
-#  California and Malibu, California. Python was followed by two sequels: Python
-#  II (2002) and Boa vs. Python (2004), both also made-for-TV films.""")
-
-# document2 = tb("""Python, from the Greek word (πύθων/πύθωνας), is a genus of
-# nonvenomous pythons[2] found in Africa and Asia. Currently, 7 species are
-# recognised.[2] A member of this genus, P. reticulatus, is among the longest
-# snakes known.""")
-
-bloblist = [document1, document2]
-
-for i, blob in enumerate(bloblist):
-    print("Top words in document {}".format(i + 1))
-    scores = {word: tfidf(word, blob, bloblist) for word in blob.words}
-    sorted_words = sorted(scores.items(), key=lambda x: x[1], reverse=True)
-    for word, score in sorted_words[:3]:
-        print("Word: {}, TF-IDF: {}".format(word, round(score, 5)))
+print(top_bible_words)
+print(tdm.A[0][top_bible_scores])
